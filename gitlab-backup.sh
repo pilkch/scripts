@@ -1,13 +1,16 @@
 #!/bin/bash -xe
 
+# NOTE: This is aimed at backing up a complete private gitlab instance
+
 GITLAB_HOST=<PUT YOUR GITLAB HOSTNAME HERE>
 GITLAB_PORT=443
 GITLAB_ACCESS_TOKEN=<PUT YOUR GITLAB ACCESS TOKEN HERE>
 
 # Create our backup folder
 DATE=$(date '+%Y%m%d')
-mkdir -p "backups/$DATE"
-cd "backups/$DATE"
+rm -rf "backups/$DATE/gitlab"
+mkdir -p "backups/$DATE/gitlab"
+cd "backups/$DATE/gitlab"
 
 # Get a list of the projects from the gitlab API
 API_RESPONSE=$(curl -k --header  "PRIVATE-TOKEN: $GITLAB_ACCESS_TOKEN"  "https://$GITLAB_HOST:$GITLAB_PORT/api/v4/projects")
@@ -32,3 +35,8 @@ while IFS= read -r PROJECT_PATH_WITH_NAMESPACE; do
   # Not every project has a wiki, this is allowed to fail
   git clone --mirror "git@$GITLAB_HOST:$PROJECT_PATH_WITH_NAMESPACE.wiki.git" || true
 done <<< "$PROJECT_PATHS_WITH_NAMESPACES"
+
+# Tar the whole gitlab folder and delete it
+cd ..
+tar zcf ./gitlab$DATE.tar.gz ./gitlab
+rm -rf ./gitlab
