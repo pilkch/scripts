@@ -8,9 +8,10 @@ GITLAB_ACCESS_TOKEN=<PUT YOUR GITLAB ACCESS TOKEN HERE>
 
 # Create our backup folder
 DATE=$(date '+%Y%m%d')
-rm -rf "backups/$DATE/gitlab"
-mkdir -p "backups/$DATE/gitlab"
-cd "backups/$DATE/gitlab"
+BACKUP_FOLDER="$HOME/backups/$DATE/gitlab"
+rm -rf "$BACKUP_FOLDER"
+mkdir -p "$BACKUP_FOLDER"
+cd "$BACKUP_FOLDER"
 
 # Get a list of the projects from the gitlab API
 API_RESPONSE=$(curl -k --header  "PRIVATE-TOKEN: $GITLAB_ACCESS_TOKEN"  "https://$GITLAB_HOST:$GITLAB_PORT/api/v4/projects")

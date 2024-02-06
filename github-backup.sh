@@ -9,9 +9,10 @@ GITHUB_ACCESS_TOKEN=<PUT YOUR GITHUB ACCESS TOKEN HERE>
 
 # Create our backup folder
 DATE=$(date '+%Y%m%d')
-rm -rf "backups/$DATE/github"
-mkdir -p "backups/$DATE/github"
-cd "backups/$DATE/github"
+BACKUP_FOLDER="$HOME/backups/$DATE/github"
+rm -rf "$BACKUP_FOLDER"
+mkdir -p "$BACKUP_FOLDER"
+cd "$BACKUP_FOLDER"
 
 # Get a list of the projects from the github API
 # NOTE: We only want projects that are not forks (Ignores one off merge requests for random public projects), and we only need the git_url attribute
