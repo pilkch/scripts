@@ -24,6 +24,32 @@ To download a video:
 ./download-mp4.sh https://www.youtube.com/watch?v=LMSRW8ZBZ5M
 ```
 
+## backup-servers.sh
+
+### About
+
+Calls the other scripts below to create a backup and copies the backups to a mounted samba share (Or somewhere else on the machine)
+
+### Usage
+
+1. Update the configuration or remove the calls to the below scripts from backup-servers.sh
+2. ./backup-servers.sh
+3. Backups should now exist on the samba share (Or whatever destination you have entered)
+
+
+## github-backup.sh
+
+### About
+
+Gets a list of the projects on a github instance, and clones the repos and wikis.
+
+### Usage
+
+1. Update the variables at the top of vaultwarden-backup.sh
+2. Only call this script as it is called from backup-servers.sh because we have to do some su magic
+3. A new backup should now be under the $HOME/backups/ folder
+
+
 ## gitlab-backup.sh
 
 ### About
@@ -45,28 +71,28 @@ Gets a list of the projects on a gitlab instance, and clones the repos and wikis
 ```bash
 ./gitlab-backup.sh
 ```
-3. A new backup should now be under the backups/ folder
+3. A new backup should now be under the $HOME/backups/ folder
 
 
-## github-backup.sh
+## homeassistant-backup.sh
 
 ### About
 
-Gets a list of the user's projects on github.com, clones the repos and wikis.
-
-**NOTE: These do not get backed up:**  
-**- Merge requests**  
-**- Issues board**  
-**- Snippets**  
-**- CI/CD stuff**  
-**- etc.**  
-**- Members, user information etc.**  
+HomeAssistant has a non-trivial websocket API so I've created [a helper](https://github.com/pilkch/homeassistant-websocket-api-helper).
 
 ### Usage
 
-1. Update the variables at the top of github-backup.sh
-2. Run the backup script:
-```bash
-./github-backup.sh
-```
-3. A new backup should now be under the backups/ folder
+It requires building a C++ application and is complicated to set up, please check the notes at the top of homeassistant-backup.sh for using the script.
+
+
+## vaultwarden-backup.sh
+
+### About
+
+Vaultwarden doesn't have an API so taking a backup means we have to log onto the machine as the local vaultwarden user, get a copy of the files, tar them and copy them back to the calling server.
+
+### Usage
+
+1. Update the variables at the top of vaultwarden-backup.sh
+2. Only call this script as it is called from backup-servers.sh because we have to do some su magic
+3. A new backup should now be under the $HOME/backups/ folder

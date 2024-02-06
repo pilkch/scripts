@@ -1,1 +1,5 @@
 backups
+
+homeassistant-backup/configuration.json
+homeassistant-backup/homeassistant-websocket-api-helper
+homeassistant-backup/*.crt
