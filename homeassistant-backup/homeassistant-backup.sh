@@ -28,8 +28,7 @@ rm -rf ./backup*.*.tar
 
 # Create our backup folder
 DATE=$(date '+%Y%m%d')
-BACKUP_FOLDER="$HOME/backups/$DATE/homeassistant"
-rm -rf "$BACKUP_FOLDER"
+BACKUP_FOLDER="$HOME/backups/$DATE"
 mkdir -p "$BACKUP_FOLDER"
 
 # Create a HomeAssistant backup with the homeassistant-websocket-api-helper
@@ -46,6 +45,9 @@ fi
 
 BACKUP_FILE_ARCHIVE=$(ls backup$DATE.*.tar)
 BACKUP_FILE_ARCHIVE_GPG="$BACKUP_FOLDER/homeassistant${DATE}.tar.gpg"
+
+# Delete any existing gpg file
+rm -rf "$BACKUP_FILE_ARCHIVE_GPG"
 
 # GPG encrypt the tar file
 if cat "$BACKUP_FILE_ARCHIVE" | gpg --batch --no-options --no-tty --yes --symmetric \
