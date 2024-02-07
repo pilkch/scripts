@@ -1,0 +1,20 @@
+[Unit]
+Description=Timer for backup servers script
+
+[Timer]
+# on boot
+OnBootSec=30min
+
+# How often to run it
+OnCalendar=weekly
+AccuracySec=12h
+
+# If the machine is not on during the set time, run asap afterwards
+Persistent=true
+
+# Set a random delay before running 
+# so multiple cronjobs do not run at once.
+RandomizedDelaySec=600
+
+[Install]
+WantedBy=timers.target

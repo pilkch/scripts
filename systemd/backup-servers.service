@@ -1,0 +1,11 @@
+[Unit]
+Description=Backup servers script
+Conflicts=shutdown.target
+After=local-fs.target time-sync.target
+Before=shutdown.target
+
+# Run backup-servers.sh in the user's home folder in their development folder (Update this to where you have git cloned the repo to)
+[Service]
+Type=oneshot
+WorkingDirectory=%h/Documents/dev/scripts
+ExecStart=%h/Documents/dev/scripts/backup-servers.sh

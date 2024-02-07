@@ -96,3 +96,38 @@ Vaultwarden doesn't have an API so taking a backup means we have to log onto the
 1. Update the variables at the top of vaultwarden-backup.sh
 2. Only call this script as it is called from backup-servers.sh because we have to do some su magic
 3. A new backup should now be under the $HOME/backups/ folder
+
+
+## Setting up a systemd timer to run backup-servers.sh
+
+1. Copy the systemd service and timer files to your user systemd folder:
+```bash
+mkdir -p $HOME/.config/systemd/user
+cp ./systemd/backup-servers.{service,timer} $HOME/.config/systemd/user
+```
+2. Reload systemd and load the timer:
+```bash
+systemctl --user daemon-reload
+systemctl --user enable backup-servers.timer
+systemctl --user start backup-servers.timer
+```
+3. Check that the timer is now active:
+```bash
+systemctl --user list-timers --all 
+```
+
+## Disable and remove the timre and service
+
+1. Disable the timer:
+```bash
+systemctl --user stop backup-servers.timer
+systemctl --user disable backup-servers.timer
+```
+2. Remove the service and timer files:
+```bash
+rm -f $HOME/.config/systemd/user/backup-servers.{service,timer}
+```
+3. Reload systemd:
+```bash
+systemctl --user daemon-reload
+```
