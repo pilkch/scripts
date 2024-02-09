@@ -10,18 +10,9 @@
 # https://www.redhat.com/sysadmin/encryption-decryption-gpg
 
 # Usage:
-# 1. Create the backup as the vaultwarden user
-# sudo cp "$PWD/vaultwarden-backup.sh" /home/vaultwarden/
-# sudo -u vaultwarden "$PWD/vaultwarden-backup.sh"
-# 2. Copy the backup to the regular users' backup location
-# DATE=$(date '+%Y%m%d')
-# BACKUP_FOLDER="backups/$DATE/vaultwarden"
-# rm -rf "$BACKUP_FOLDER"
-# mkdir -p "$BACKUP_FOLDER"
-# sudo mv /home/vaultwarden/backups/$DATEbackup.tar.xz $PWD/backups/$DATE/vaultwarden/
-# sudo chown $USER:$USER $PWD/backups/$DATE/vaultwarden/vaultwarden${DATE}.tar.gz.gpg
+# Check vaultwarden-backup.sh for the usage of this script
 #
-# 3. Decrypting later (You will be prompted for the password used to encrypt it earlier)
+# Decrypting later (You will be prompted for the password used to encrypt it earlier)
 # gpg --output vaultwarden20240114.tar.gz --decrypt vaultwarden20240114.tar.gz.gpg
 
 VAULTWARDEN_GPG_PASSWORD=<PUT A LONG RANDOMLY GENERATED PASSWORD HERE>
