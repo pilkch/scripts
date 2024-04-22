@@ -22,7 +22,8 @@ cd "$WORKING_FOLDER"
 
 # Get a list of the projects from the github API
 # NOTE: We only want projects that are not forks (Ignores one off merge requests for random public projects), and we only need the git_url attribute
-PROJECTS=$(curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" -H "type: owner" https://api.github.com/user/repos | jq -r '.[] | select(.fork==false) | "\(.full_name)"')
+# NOTE: We specify 100 per page which is the maximum, if you have more than 100 projects then you'll have to implement pagination
+PROJECTS=$(curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" -H "type: owner" https://api.github.com/user/repos?per_page=100 | jq -r '.[] | select(.fork==false) | "\(.full_name)"')
 
 # We get a list with entries like "pilkch/postcodes"
 echo "PROJECTS=$PROJECTS"
