@@ -116,7 +116,7 @@ systemctl --user start backup-servers.timer
 systemctl --user list-timers --all 
 ```
 
-## Disable and remove the timre and service
+## Disable and remove the timer and service
 
 1. Disable the timer:
 ```bash
@@ -126,6 +126,56 @@ systemctl --user disable backup-servers.timer
 2. Remove the service and timer files:
 ```bash
 rm -f $HOME/.config/systemd/user/backup-servers.{service,timer}
+```
+3. Reload systemd:
+```bash
+systemctl --user daemon-reload
+```
+
+
+## github-to-gitlab-mirror.sh
+
+Mirrors all repos from github.com (And probably private instances too) to a private gitlab instance (And probably gitlab.com too).  
+To minimise bandwidth and avoid annoying github.com too much, and allow you to call it reasonably frequently, it performs lazy updating by keeping a cache for each project, so only updates are downloaded and pushed.
+
+### Usage
+
+1. Update the variables at the top of github-to-gitlab-mirror.sh
+2. Run it:
+```bash
+./github-to-gitlab-mirror.sh
+```
+
+### Setting up a systemd timer to run github-to-gitlab-mirror.sh
+
+1. Updated the settings in the github-to-gitlab-mirror.sh file
+2. Set the time interval in the systemd timer file
+3. Copy the systemd service and timer files to your user systemd folder:
+```bash
+mkdir -p $HOME/.config/systemd/user
+cp ./github-to-gitlab-mirror/systemd/github-to-gitlab-mirror.{service,timer} $HOME/.config/systemd/user
+```
+4. Reload systemd and load the timer:
+```bash
+systemctl --user daemon-reload
+systemctl --user enable github-to-gitlab-mirror.timer
+systemctl --user start github-to-gitlab-mirror.timer
+```
+5. Check that the timer is now active:
+```bash
+systemctl --user list-timers --all 
+```
+
+### Stop, disable and remove the timer and service
+
+1. Stop and disable the timer:
+```bash
+systemctl --user stop github-to-gitlab-mirror.timer
+systemctl --user disable github-to-gitlab-mirror.timer
+```
+2. Remove the service and timer files:
+```bash
+rm -f $HOME/.config/systemd/user/github-to-gitlab-mirror.{service,timer}
 ```
 3. Reload systemd:
 ```bash
