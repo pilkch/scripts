@@ -1,0 +1,11 @@
+stages:
+  - test
+
+check:
+  stage: test
+  tags:
+    - linux
+    - shellcheck
+  script:
+    - shellcheck
+    - jsonlint
