@@ -8,7 +8,7 @@ function create_list_of_files {
 function check_list_of_files {
     echo "" > mp3errorfiles.txt
 
-    while read FILE; do
+    while read -r FILE; do
     OUTPUT=$(file "$FILE")
     if [[ "$OUTPUT" != *"ID3"* ]] && [[ "$OUTPUT" != *"layer III"* ]]; then
         # Output to the screen

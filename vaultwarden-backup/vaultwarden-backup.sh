@@ -15,4 +15,4 @@ DATE=$(date '+%Y%m%d')
 VAULTWARDEN_BACKUP_FOLDER="$HOME/backups/$DATE"
 mkdir -p "$VAULTWARDEN_BACKUP_FOLDER"
 sudo cp "/home/vaultwarden/backups/${DATE}/vaultwarden/vaultwarden${DATE}.tar.gz.gpg" "$VAULTWARDEN_BACKUP_FOLDER/"
-sudo chown $USER:$USER "$VAULTWARDEN_BACKUP_FOLDER/vaultwarden${DATE}.tar.gz.gpg"
+sudo chown "$USER":"$USER" "$VAULTWARDEN_BACKUP_FOLDER/vaultwarden${DATE}.tar.gz.gpg"
