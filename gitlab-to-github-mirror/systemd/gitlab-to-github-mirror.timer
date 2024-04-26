@@ -1,0 +1,20 @@
+[Unit]
+Description=Timer for gitlab to github mirror script
+
+[Timer]
+# on boot
+OnBootSec=21min
+
+# Run it every 10 minutes or so, but offset from the hour by a few minutes
+OnCalendar=*:3,13,23,33,43,53
+AccuracySec=12h
+
+# If the machine is not on during the set time, run asap afterwards
+Persistent=true
+
+# Set a random delay before running 
+# so multiple cronjobs do not run at once.
+RandomizedDelaySec=500
+
+[Install]
+WantedBy=timers.target

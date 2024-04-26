@@ -1,0 +1,11 @@
+[Unit]
+Description=Gitlab to github mirror script
+Conflicts=shutdown.target
+After=local-fs.target time-sync.target
+Before=shutdown.target
+
+# Run gitlab-to-github-mirror.sh in the user's home folder
+[Service]
+Type=oneshot
+WorkingDirectory=%h
+ExecStart=%h/Documents/dev/scripts/gitlab-to-github-mirror/gitlab-to-github-mirror.sh

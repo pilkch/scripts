@@ -133,6 +133,55 @@ systemctl --user daemon-reload
 ```
 
 
+## gitlab-to-github-mirror.sh
+
+Mirrors all repos from a particular group on a private gitlab instance (And probably gitlab.com) to the public github.com (And probably private instances).  
+
+### Usage
+
+1. Update the variables at the top of gitlab-to-github-mirror.sh
+2. Run it:
+```bash
+./gitlab-to-github-mirror.sh
+```
+
+### Setting up a systemd timer to run gitlab-to-github-mirror.sh
+
+1. Updated the settings in the gitlab-to-github-mirror.sh file
+2. Set the time interval in the systemd timer file
+3. Copy the systemd service and timer files to your user systemd folder:
+```bash
+mkdir -p $HOME/.config/systemd/user
+cp ./gitlab-to-github-mirror/systemd/gitlab-to-github-mirror.{service,timer} $HOME/.config/systemd/user
+```
+4. Reload systemd and load the timer:
+```bash
+systemctl --user daemon-reload
+systemctl --user enable gitlab-to-github-mirror.timer
+systemctl --user start gitlab-to-github-mirror.timer
+```
+5. Check that the timer is now active:
+```bash
+systemctl --user list-timers --all 
+```
+
+### Stop, disable and remove the timer and service
+
+1. Stop and disable the timer:
+```bash
+systemctl --user stop gitlab-to-github-mirror.timer
+systemctl --user disable gitlab-to-github-mirror.timer
+```
+2. Remove the service and timer files:
+```bash
+rm -f $HOME/.config/systemd/user/gitlab-to-github-mirror.{service,timer}
+```
+3. Reload systemd:
+```bash
+systemctl --user daemon-reload
+```
+
+
 ## github-to-gitlab-mirror.sh
 
 Mirrors all repos from github.com (And probably private instances too) to a private gitlab instance (And probably gitlab.com too).  
