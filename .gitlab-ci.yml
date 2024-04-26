@@ -1,11 +1,22 @@
 stages:
-  - test
+  - check
 
-check:
-  stage: test
+check-bash:
+  stage: check
   tags:
     - linux
     - shellcheck
   script:
-    - shellcheck
-    - jsonlint
+    - shellcheck $(find -name "*.sh")
+
+check-json:
+  stage: check
+  image: node:latest
+  script:
+    # https://stackoverflow.com/a/43318794
+    # Install ESLint in this docker container
+    - npm install -g eslint
+    # For our configuration file
+    - npm install @eslint/js -D
+    # Run ESLint
+    - eslint .
