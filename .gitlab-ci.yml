@@ -7,7 +7,9 @@ check-bash:
     - linux
     - shellcheck
   script:
-    - shellcheck $(find -name "*.sh")
+    # NOTE: These errors are excluded:
+    # SC2185: Some finds don't have a default path. Specify '.' explicitly. (find -name "*.txt" for example would trigger this)
+    - shellcheck --exclude=SC2185 $(find -name "*.sh")
 
 check-json:
   stage: check
