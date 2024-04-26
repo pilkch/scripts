@@ -18,7 +18,7 @@ check-json:
     # https://stackoverflow.com/a/43318794
     # Install ESLint in this docker container
     - npm install -g eslint
-    # For our configuration file
-    - npm install @eslint/js -D
+    # For the eslint.config.mjs configuration file
+    - npm install @eslint/js eslint-plugin-jsonc -D
     # Run ESLint
-    - eslint .
+    - ESLINT_USE_FLAT_CONFIG=true eslint --config eslint.config.mjs .

@@ -1,10 +1,15 @@
 // https://eslint.org/docs/latest/use/configure/configuration-files#using-predefined-configurations
 
 import js from "@eslint/js";
+import eslintPluginJsonc from 'eslint-plugin-jsonc';
 
 export default [
   js.configs.recommended,
+  ...eslintPluginJsonc.configs['flat/recommended-with-jsonc'],
   {
-    // your configuration here
+    rules: {
+      // override/add rules settings here, such as:
+      // 'jsonc/rule-name': 'error'
+    }
   }
 ];
