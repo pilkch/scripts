@@ -2,8 +2,6 @@
 
 # NOTE: This is aimed at backing up a user's repos on the public github.com
 
-GITHUB_USERNAME=<PUT YOUR GITHUB USER NAME HERE>
-
 # Created here https://github.com/settings/tokens
 GITHUB_ACCESS_TOKEN=<PUT YOUR GITHUB ACCESS TOKEN HERE>
 
