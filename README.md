@@ -230,3 +230,20 @@ rm -f $HOME/.config/systemd/user/github-to-gitlab-mirror.{service,timer}
 ```bash
 systemctl --user daemon-reload
 ```
+
+## GPG Keys
+
+Backups of the more sensitive services are encrypted with GPG encryption.  
+GPG keys are kept on a per user basis, the gpg-agent is run automatically, a key is stored in a key ring, and the key is unlocked when you call gpg and pass it a passphrase (I guess it just tries every key with that passphrase?).
+
+1. Generate a parent key:
+```bash
+$ gpg --quick-generate-key "Chris (Vaultwarden backup key) <chris@email.com>" rsa4096 cert never
+```
+2. Generate a sub key:
+```bash
+$ gpg --edit-key <key hash>
+> addkey
+```
+3. Set the passphrase variable in the script
+
