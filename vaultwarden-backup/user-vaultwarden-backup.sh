@@ -33,7 +33,6 @@ BACKUP_FILE_ARCHIVE_GPG="$BACKUP_FOLDER/vaultwarden${DATE}.tar.gz.gpg"
 # Backup the sqlite database
 if /usr/bin/sqlite3 "$VAULTWARDEN_SQLITE_DATABASE_FILE" ".backup '$BACKUP_FILE_DB'"; then
   echo "Written temporary backup file to $BACKUP_FILE_DB"
-  echo "Current tar command: $tar_file_params"
 else
   echo "Backup of the database failed"
   exit 1

@@ -2,8 +2,6 @@
 
 # NOTE: This mirrors repos from the public github.com (And probably private instances) to a private gitlab instance (And probably gitlab.com)
 
-GITHUB_USERNAME=<PUT YOUR GITHUB USER NAME HERE>
-
 # Created here https://github.com/settings/tokens
 GITHUB_ACCESS_TOKEN=<PUT YOUR GITHUB ACCESS TOKEN HERE>
 
