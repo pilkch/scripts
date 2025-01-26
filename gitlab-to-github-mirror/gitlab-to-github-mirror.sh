@@ -1,6 +1,7 @@
 #!/bin/bash -xeu
 
 # NOTE: This mirrors repos from a private gitlab instance (And probably gitlab.com) to the public github.com (And probably private instances)
+# Create an access token with "read_api", "read_user" and "read_repository"
 
 GITLAB_HOST=<PUT YOUR GITLAB HOSTNAME HERE>
 GITLAB_PORT=443

@@ -45,7 +45,7 @@ Gets a list of the projects on a github instance, and clones the repos and wikis
 
 ### Usage
 
-1. Update the variables at the top of vaultwarden-backup.sh
+1. Update the variables at the top of github-backup.sh
 2. Only call this script as it is called from backup-servers.sh because we have to do some su magic
 3. A new backup should now be under the $HOME/backups/ folder
 
