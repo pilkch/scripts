@@ -11,7 +11,8 @@ fi
 TIMESTAMPS="$2"
 
 if [ "$TIMESTAMPS" = "" ]; then
-  youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 -o '%(title)s.%(ext)s' "$URL_OR_IDENTIFIER"
+  #youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 -o '%(title)s.%(ext)s' "$URL_OR_IDENTIFIER"
+  yt-dlp --extract-audio --audio-format mp3 -S "ext" -o "%(title)s.%(ext)s" --embed-metadata --no-embed-info-json "$URL_OR_IDENTIFIER"
 else
-  yt-dlp --extract-audio -S "ext" -o "%(title)s.%(ext)s" --download-sections "*$TIMESTAMPS" "$URL_OR_IDENTIFIER"
+  yt-dlp --extract-audio --audio-format mp3 -S "ext" -o "%(title)s.%(ext)s" --embed-metadata --no-embed-info-json --download-sections "*$TIMESTAMPS" "$URL_OR_IDENTIFIER"
 fi
