@@ -3,6 +3,7 @@
 # NOTE: This is aimed at backing up a user's repos on the public github.com
 
 # Created here https://github.com/settings/tokens
+# The token needs "Repository permissions -> Metadata: Read only"
 GITHUB_ACCESS_TOKEN=<PUT YOUR GITHUB ACCESS TOKEN HERE>
 
 # Create our backup folder
