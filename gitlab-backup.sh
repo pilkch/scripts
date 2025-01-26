@@ -1,6 +1,7 @@
 #!/bin/bash -xe
 
 # NOTE: This is aimed at backing up a complete private gitlab instance
+# Create an access token with "read_api", "read_user" and "read_repository"
 
 GITLAB_HOST=<PUT YOUR GITLAB HOSTNAME HERE>
 GITLAB_PORT=443
