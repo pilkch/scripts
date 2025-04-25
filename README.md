@@ -247,3 +247,14 @@ $ gpg --edit-key <key hash>
 ```
 3. Set the passphrase variable in the script
 
+
+## pipewire-create-virtual-device.sh
+
+Creates a virtual pipewire device so that applications can output to that, then the virtual device can output to multiple physical output devices
+
+### Usage
+
+1. Run it:
+```bash
+./pipewire-create-virtual-device.sh
+```
